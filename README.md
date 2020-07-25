@@ -1,6 +1,6 @@
 # Ralley Install
 
-A script to help install the binary on Apline, Linux, Windows and Mac.
+A script to help install the [Ralley](https://ralley.io) binary on Apline, Linux, Windows and Mac.
 
 Script is hosted at `https://get.ralley.io`
 
