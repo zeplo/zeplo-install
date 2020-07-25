@@ -1,0 +1,16 @@
+{
+  "name": "ralley-cli-install",
+  "version": "1.0.0",
+  "description": "A tiny script which helps to install the binary on Apline, Linux, Windows and Mac.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "micro -p $PORT"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "micro": "^9.3.3",
+    "request": "^2.88.0"
+  }
+}
