@@ -36,7 +36,7 @@ async function getInstallScript () {
 async function createInstallScript () {
   return new Promise((resolve, reject) => {
     request({
-      url: 'https://zeplo-cli-releases.zeplo.io',
+      url: 'https://ralley-cli-releases.zeplo.io',
       json: true,
     }, (err, resp, body) => {
       if (err || !resp) return reject(err)
