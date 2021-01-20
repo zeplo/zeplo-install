@@ -1,12 +1,12 @@
 steps:
   # build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/ralley-install', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/zeplo-install', '.']
   # push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/ralley-install']
+  args: ['push', 'gcr.io/$PROJECT_ID/zeplo-install']
   # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'ralley-install', '--image', 'gcr.io/$PROJECT_ID/ralley-install', '--region', 'us-central1', '--platform', 'managed', '--quiet']
+  args: ['beta', 'run', 'deploy', 'ralley-install', '--image', 'gcr.io/$PROJECT_ID/zeplo-install', '--region', 'us-central1', '--platform', 'managed', '--quiet']
 images:
-- gcr.io/$PROJECT_ID/ralley-install
+- gcr.io/$PROJECT_ID/zeplo-install

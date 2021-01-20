@@ -37,7 +37,7 @@ esac
 if [ "$machine" = 'UNKNOWN' ]; then
 	cat >&2 <<-'EOF'
 		Unknown distribution $unameOut
-		Please download distribution from https://github.com/ralleyio/ralley-cli/releases/tag/$version
+		Please download distribution from https://github.com/zeplo/zeplo-cli/releases/tag/$version
 		EOF
 		exit 1
 fi
@@ -62,22 +62,22 @@ if [ "$machine" = 'alpine' ]; then
 fi
 
 # Download URL for Github
-downloadUrl="https://github.com/ralleyio/ralley-cli/releases/download/$version/ralley-$machine.gz"
+downloadUrl="https://github.com/zeplo/zeplo-cli/releases/download/$version/zeplo-$machine.gz"
 
 echo
 echo "  --------------------"
-echo "  Installing Ralley CLI"
+echo "  Installing Zeplo CLI"
 echo "  --------------------"
 echo
-echo "  Downloading Ralley CLI binary from $downloadUrl"
+echo "  Downloading Zeplo CLI binary from $downloadUrl"
 echo
 
 if command_exists wget; then
-	$sh_c "wget -qO- $downloadUrl | gunzip -f -c > /usr/local/bin/ralley"
-	$sh_c "chmod +x /usr/local/bin/ralley"
+	$sh_c "wget -qO- $downloadUrl | gunzip -f -c > /usr/local/bin/zeplo"
+	$sh_c "chmod +x /usr/local/bin/zeplo"
 elif command_exists curl; then
-	$sh_c "curl -SLs $downloadUrl | gunzip -f -c > /usr/local/bin/ralley"
-	$sh_c "chmod +x /usr/local/bin/ralley"
+	$sh_c "curl -SLs $downloadUrl | gunzip -f -c > /usr/local/bin/zeplo"
+	$sh_c "chmod +x /usr/local/bin/zeplo"
 else
 	echo ""
 	echo "[ERR] Installer requires wget or curl"
@@ -90,7 +90,7 @@ echo "  Installation complete!"
 echo
 echo "  Try the following command to check it's working:"
 echo
-echo "    $ ralley -h"
+echo "    $ zeplo -h"
 echo
 echo
 

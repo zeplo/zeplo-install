@@ -5,7 +5,7 @@ const request = require('request')
 const error = `
 #!/bin/sh
 
-echo "Something went wrong. Please file an issue at https://github.com/ralleyio/ralley-install."
+echo "Something went wrong. Please file an issue at https://github.com/zeplo/zeplo-install."
 
 exit 1
 `
@@ -36,7 +36,7 @@ async function getInstallScript () {
 async function createInstallScript () {
   return new Promise((resolve, reject) => {
     request({
-      url: 'https://ralley-cli-releases.ralley.io',
+      url: 'https://zeplo-cli-releases.zeplo.io',
       json: true,
     }, (err, resp, body) => {
       if (err || !resp) return reject(err)
