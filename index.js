@@ -1,6 +1,17 @@
 const fs = require('fs')
 const path = require('path')
 const request = require('request')
+const Sentry = require("@sentry/node")
+
+Sentry.init({
+  dsn: "https://3d73e314f55a405a86dfca52ce7febdb@o412857.ingest.sentry.io/5898461",
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+})
+
 
 const error = `
 #!/bin/sh
@@ -15,7 +26,11 @@ let timer = null
 
 module.exports = async (req, res) => {
   res.setHeader('Content-Type', 'text/plain')
-  return getInstallScript().catch(() => error)
+  const res = await getInstallScript().catch((e) => {
+    Sentry.captureException(e)
+    return error
+  })
+  return res
 }
 
 async function getInstallScript () {
@@ -36,7 +51,7 @@ async function getInstallScript () {
 async function createInstallScript () {
   return new Promise((resolve, reject) => {
     request({
-      url: 'https://ralley-cli-releases.zeplo.io',
+      url: 'https://zeplo-cli-releases.zeplo.io',
       json: true,
     }, (err, resp, body) => {
       if (err || !resp) return reject(err)

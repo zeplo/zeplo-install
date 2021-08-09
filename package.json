@@ -10,6 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@sentry/node": "^6.11.0",
+    "@sentry/tracing": "^6.11.0",
     "micro": "^9.3.3",
     "request": "^2.88.0"
   }
