@@ -26,11 +26,7 @@ let timer = null
 
 module.exports = async (req, res) => {
   res.setHeader('Content-Type', 'text/plain')
-  const res = await getInstallScript().catch((e) => {
-    Sentry.captureException(e)
-    return error
-  })
-  return res
+  return getInstallScript()
 }
 
 async function getInstallScript () {
@@ -41,10 +37,12 @@ async function getInstallScript () {
       timer = null
     }, 60 * 1000 * 5)
   }
-  if (out) {
-    return out
-  }
-  out = await createInstallScript()
+  if (out) return out
+  out = await createInstallScript().catch((e) => {
+    Sentry.captureException(e)
+    return null
+  })
+  if (!out) return error
   return out
 }
 

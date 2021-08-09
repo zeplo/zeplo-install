@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "micro -p $PORT"
+    "start": "micro -l 0.0.0.0:$PORT"
   },
   "author": "",
   "license": "MIT",
