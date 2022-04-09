@@ -61,8 +61,17 @@ if [ "$machine" = 'alpine' ]; then
 	$sh_c 'apk add libstdc++'
 fi
 
+# archOut="$(uname -m)"
+arch='x64'
+# echo $archOut
+# if [ "$archOut" = 'arm64' ]; then
+# 	if [ "$machine" = 'macos' ]; then
+#   	arch='arm64'
+# 	fi
+# fi
+
 # Download URL for Github
-downloadUrl="https://github.com/zeplo/zeplo-cli/releases/download/$version/zeplo-$machine.gz"
+downloadUrl="https://github.com/zeplo/zeplo-cli/releases/download/$version/zeplo-$machine-$arch.gz"
 
 echo
 echo "  --------------------"
