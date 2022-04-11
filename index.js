@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const request = require('request')
 const Sentry = require("@sentry/node")
+const axios = require('axios')
 
 Sentry.init({
   dsn: "https://3d73e314f55a405a86dfca52ce7febdb@o412857.ingest.sentry.io/5898461",
@@ -47,14 +47,8 @@ async function getInstallScript () {
 }
 
 async function createInstallScript () {
-  return new Promise((resolve, reject) => {
-    request({
-      url: 'https://zeplo-cli-releases.zeplo.io',
-      json: true,
-    }, (err, resp, body) => {
-      if (err || !resp) return reject(err)
-      const out = fs.readFileSync(path.resolve(__dirname, './install.sh'), 'utf8').replace('$REPLACE_WITH_VERSION$', body && body.stable && body.stable.tag)
-      resolve(out)
-    })
-  })
+  const resp = await axios.get('https://zeplo-cli-releases.zeplo.io')
+  const tag = resp && resp.data.stable && resp.data.stable.tag
+  if (!tag) return null
+  return fs.readFileSync(path.resolve(__dirname, './install.sh'), 'utf8').replace('$REPLACE_WITH_VERSION$', tag)
 }
